@@ -1,0 +1,98 @@
+---
+title: " Influence of Player Attributes on Market Value"
+format:
+  html:
+    code-fold: true
+editor: visual
+---
+
+### **Research Overview**
+
+In this segment of our study, we explore how various player attributes influence the market value of players in FIFA 22. This deeper understanding aids players and team managers in making informed decisions in the game’s virtual transfer market.
+
+### **Methodology**
+
+Our approach uses linear regression models to analyze the relationship between key player attributes—such as age, overall ratings, potential, and international reputation—and their market values. The initial models were refined to improve fit and explanatory power.
+
+```{r .fold, eval=FALSE}
+model_market_value <- lm(value_eur ~ age + overall + potential +  grouped_position + international_reputation , data = Fifa_22)
+summary(model_market_value)
+par(mfrow = c(2, 2))
+plot(model_market_value)
+
+```
+
+### **Key Findings**
+
+#### **Initial Regression Analysis**
+
+The initial regression model highlighted key predictors but suggested possible improvements:
+
+-   **Significant Predictors:** Age, overall ratings, and potential significantly affect market value.
+
+-   **Model Diagnostics:** Residual analysis indicated the need for adjustments to handle non-linearity and potential heteroscedasticity.
+
+    ![](/lm.png)
+
+#### **Improved Regression Model**
+
+Adjustments were made to the model to enhance its accuracy and reliability:
+
+```{r .fold1, eval=FALSE}
+Fifa_22$age <- ifelse(is.na(Fifa_22$age), median(Fifa_22$age, na.rm = TRUE), Fifa_22$age)
+Fifa_22$overall <- ifelse(is.na(Fifa_22$overall), median(Fifa_22$overall, na.rm = TRUE), Fifa_22$overall)
+Fifa_22$potential <- ifelse(is.na(Fifa_22$potential), median(Fifa_22$potential, na.rm = TRUE), Fifa_22$potential)
+Fifa_22$value_eur <- ifelse(is.na(Fifa_22$value_eur), median(Fifa_22$value_eur, na.rm = TRUE), Fifa_22$value_eur)
+
+# Extract actual values (back-transformed from log scale if needed)
+# Predict and add back-transformed fitted values
+# Impute missing values for categorical data with the mode
+mode <- function(x) {
+  ux <- unique(x)
+  ux[which.max(tabulate(match(x, ux)))]
+}
+
+Fifa_22$grouped_position <- ifelse(is.na(Fifa_22$grouped_position), mode(Fifa_22$grouped_position), Fifa_22$grouped_position)
+Fifa_22$international_reputation <- ifelse(is.na(Fifa_22$international_reputation), mode(Fifa_22$international_reputation), Fifa_22$international_reputation)
+
+
+model_market_value <- lm(log(value_eur) ~ scale(age) * scale(overall) + I(potential) + grouped_position + international_reputation, data = Fifa_22)
+summary(model_market_value)
+plot(model_market_value)
+
+```
+
+![](/improvedlm.png)
+
+The diagnostic plots indicate that the improved regression model generally meets the assumptions of linear regression, with residuals displaying random scatter, normal distribution, and consistent spread across the range of fitted values. However, the presence of potential influential points in the Residuals vs. Leverage plot suggests a need for further investigation into these outliers to confirm their impact on the model.
+
+##### **Visual Insights from Improved Model**
+
+###### Residuals vs. Fitted Values Plot (Improved Model)
+
+```{r .fold2, eval=FALSE}
+Fifa_22$fitted_values <- exp(predict(model_market_value))  # Back-transform
+Fifa_22$residuals <- residuals(model_market_value)
+
+# Plot residuals
+ggplot(Fifa_22, aes(x = fitted_values, y = residuals)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "red") +
+  labs(x = "Fitted Market Value (EUR)", y = "Residuals") +
+  ggtitle("Residuals vs. Fitted Values") +
+  theme_minimal()
+
+
+```
+
+![](/fitted%20vs%20residue.png)This plot from the improved model shows a better distribution of residuals, indicating a more robust fit and adherence to regression assumptions.
+
+### **Conclusion**
+
+The revised analysis with the improved model underlines the importance of adapting models based on diagnostic feedback. The enhanced model confirms that age, performance, potential, and international reputation are pivotal in influencing a player's market value in FIFA 22.
+
+### **How to Use This Information**
+
+-   **Player Selection:** Gamers should prioritize these attributes when making transactions in the transfer market.
+
+-   **Team Strategy:** Insights from the improved model can guide managers in assembling teams that balance potential and skill for maximum competitive advantage.

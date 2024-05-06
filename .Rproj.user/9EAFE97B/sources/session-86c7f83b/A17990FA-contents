@@ -1,0 +1,79 @@
+---
+title: "Impact of Age and Playing Position on Player Ratings in FIFA 22"
+format:
+  html:
+    code-fold: true
+editor: visual
+---
+
+### **Research Overview**
+
+This analysis investigates the interactions between players' age groups, playing positions, and their overall ratings within FIFA 22, providing insights into career longevity and optimal player usage based on age and role.
+
+### **Methodology**
+
+Using the FIFA 22 dataset, players were categorized by age groups and positions. Chi-squared tests were conducted to determine if there were significant differences in the distribution of ratings across these groups. Additionally, box plots were utilized to visually compare the overall ratings across different age groups and positions.
+
+### **Statistical Analysis**
+
+#### **Chi-Squared Test Results**
+
+The Chi-squared test indicated a highly significant association between players' positions, age groups, and their ratings, with a p-value less than 2.2e-16, suggesting strong dependency.
+
+```{r .fold, eval=FALSE}
+contingency_table <- table(players_clean$grouped_position, players_clean$age_group)
+
+# Chi-square test of independence
+chi_test_result <- chisq.test(contingency_table)
+print(chi_test_result)
+
+
+# Assuming chi_test_result is your chi-square test result
+std_res <- chisq.test(contingency_table)$stdres
+# View standardized residuals
+print(std_res)
+
+```
+
+#### **Distribution of Overall Ratings by Age Group**
+
+The box plot for overall ratings by age group illustrates that players in the 'Prime' and 'Veteran' groups tend to have higher median ratings, indicating peak performance during these stages.
+
+```{r .fold1, eval=FALSE}
+library(ggplot2)
+ggplot(Fifa_22, aes(x = age_group, y = overall, fill = age_group)) +
+  geom_boxplot() +
+  ggtitle("Distribution of Overall Ratings by Age Group")
+
+```
+
+![](by age group.png)
+
+#### **Distribution of Overall Ratings by Position**
+
+The box plot across positions shows variability in ratings, with goalkeepers and forwards generally having higher ratings, suggesting positional impacts on player evaluations.
+
+```{r .fold2, eval=FALSE}
+ggplot(Fifa_22, aes(x = grouped_position, y = overall, fill = grouped_position)) +
+  geom_boxplot() +
+  ggtitle("Distribution of Overall Ratings by Position")
+
+```
+
+![](overall by position.png)
+
+### **Detailed Interaction Analysis**
+
+Further analysis using interaction plots revealed specific trends between different age groups and positions. For example, goalkeepers in the 'Veteran' age group showed significantly higher ratings, highlighting the value of experience in this role.
+
+![](Screenshot 2024-05-05 205347.png){width="464"}
+
+### **Conclusion**
+
+The analysis conclusively demonstrates that both age and playing position significantly impact the ratings of players in FIFA 22. Understanding these patterns can help gamers make strategic decisions about player selection and team composition, optimizing performance based on age and positional strengths.
+
+### **Implications**
+
+-   **Team Management:** Managers can leverage this data to plan career trajectories and manage player rotations effectively.
+
+-   **Game Strategy:** Players can be selected strategically for matches based on their peak performance periods correlated with their age and position.

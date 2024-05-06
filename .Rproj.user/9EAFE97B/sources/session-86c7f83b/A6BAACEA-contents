@@ -1,0 +1,44 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Comparative Study of Top Football Leagues Using FIFA 22 Data"
+  
+  navbar:
+    website:
+    
+  sidebar:
+    style: "floating"
+    position: left
+    width: 250px
+    type: dark
+    border: True
+    search: true
+    contents:
+      
+      - section: title.qmd
+        contents:
+          - INTRODUCTION.qmd
+          - DATA SET.qmd
+          - section: "ANALYSIS AND INSIGHTS"
+            contents:
+              - q1.qmd
+              - q2.qmd
+              - q3.qmd
+          - conclusion.qmd
+
+          
+      
+    
+      
+
+      
+
+    
+settings:
+  responsive: true
+
+
+editor: visual
+

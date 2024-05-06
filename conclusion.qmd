@@ -1,0 +1,34 @@
+---
+title: "Conclusion of FIFA 22 Dataset Analysis"
+format: html
+---
+
+Throughout this project, we explored various dimensions of player attributes, performances, and economic factors within FIFA 22 to uncover the underlying patterns that influence player valuations, career trajectories, and wage structures. By examining the impact of age, playing position, league, and club affiliation on player ratings and wages, we have gained substantial insights that can be leveraged in game strategy and team management.
+
+### **Key Findings**
+
+1.  **Influence of Player Attributes on Market Value**:
+
+    -   Player attributes such as age, performance ratings, and potential are critical determinants of market value in FIFA 22. Our regression models revealed that younger players with higher potential and performance ratings command higher market values.
+
+2.  **Impact of Age and Playing Position on Player Ratings**:
+
+    -   Age and playing position significantly affect player ratings, with goalkeepers showing peak ratings at older ages compared to outfield players. The data indicated that 'Prime' and 'Veteran' players generally maintain higher performance levels, especially in roles that rely more on experience and less on physical attributes.
+
+3.  **Role of League and Team in Determining Wages**:
+
+    -   Our analysis highlighted significant differences in wage structures across different leagues and teams. Players in top leagues like the English Premier League and Spanish Primera Division tend to receive higher wages, and even within leagues, wage levels vary significantly depending on the club.
+
+### **Implications**
+
+-   **Strategic Gameplay and Management**: Players and team managers can use these insights to make informed decisions about player selections, contract negotiations, and career management within the game. Understanding these dynamics allows for optimized team compositions and better financial planning.
+
+-   **Game Development**: The findings also offer valuable feedback for game developers looking to enhance realism in sports simulation games. Adjusting player attributes, potential growth curves, and economic factors in line with real-world data can improve player engagement and game authenticity.
+
+### **Future Research**
+
+Further research could expand on this project by incorporating additional variables such as player injuries, morale, and real-life transfer market trends, which could also influence player ratings and market values. Moreover, longitudinal studies observing these attributes and wages over multiple FIFA editions could provide deeper insights into the evolution of game mechanics and player valuation.
+
+### **Conclusion**
+
+In conclusion, this project has not only provided a comprehensive analysis of player attributes and economic factors within FIFA 22 but also highlighted the complex interplay between a player's career development and their value in both the virtual and real-world football arenas. The insights derived from this study underscore the sophisticated modeling that goes into sports simulation games and offer pathways for both players and developers to enhance their understanding and strategies.

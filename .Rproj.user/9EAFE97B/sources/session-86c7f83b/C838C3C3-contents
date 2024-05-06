@@ -1,0 +1,97 @@
+---
+title: "DATA SET"
+format:
+  html:
+    code-fold: true
+editor: visual
+---
+
+```         
+```
+
+The dataset used in this project consists of player data from the FIFA 22 video game, which includes information about their skills, performance, and demographics. To prepare the data for analysis, it was first loaded into a data frame for easier handling and manipulation.
+
+Key preprocessing steps included:
+
+-   **Organizing Player Positions**: Players were grouped into broader categories such as forwards, midfielders, defenders, and goalkeepers to facilitate comparative analysis across different playing roles.
+
+-   **Segmenting by Age**: Players were classified into age groups (e.g., Young, Prime, Mature, Veteran) to analyze trends and performances based on their career stage.
+
+-   **Enhancing Data Readability**: The arrangement of the dataset was refined by grouping similar types of information together, making the data easier to navigate and analyze
+
+    ```{r .fold, eval=FALSE}
+    # Install and load the dplyr library
+    library(dplyr)
+
+    Fifa_22 = read.csv("players_22.csv")
+
+    # Check for unique values in player_position to understand what's there
+    unique(Fifa_22$player_positions)
+
+
+    # Recategorize player positions
+    Fifa_22 <- Fifa_22 %>%
+      mutate(grouped_position = case_when(
+        player_positions %in% c("ST", "LW", "RW", "CF") ~ "Forward",
+        player_positions %in% c("CM", "CDM", "CAM", "RM", "LM") ~ "Midfield",
+        player_positions %in% c("CB", "LB", "RB", "LWB", "RWB") ~ "Defense",
+        TRUE ~ "Other"  # This catches any positions not listed above
+      ))
+
+
+    Fifa_22$player_positions <- toupper(Fifa_22$player_positions)
+
+    # Recategorize player positions using nested ifelse
+    Fifa_22$grouped_position <- ifelse(Fifa_22$player_positions == "GK", "Goalkeeper",
+                                       ifelse(Fifa_22$player_positions %in% c("ST", "LW", "RW", "CF"), "Forward",
+                                              ifelse(Fifa_22$player_positions %in% c("CM", "CDM", "CAM", "RM", "LM"), "Midfield",
+                                                     ifelse(Fifa_22$player_positions %in% c("CB", "LB", "RB", "LWB", "RWB"), "Defense", "Other"))))
+
+    Fifa_22 <- Fifa_22 %>%
+      mutate(grouped_position = case_when(
+        grepl("ST|LW|RW|CF", toupper(player_positions)) ~ "Forward",
+        grepl("CM|CDM|CAM|RM|LM", toupper(player_positions)) ~ "Midfield",
+        grepl("CB|LB|RB|LWB|RWB", toupper(player_positions)) ~ "Defense",
+        toupper(player_positions) == "GK" ~ "Goalkeeper",
+        TRUE ~ "Other"
+      ))
+
+    Fifa_22 <- Fifa_22 %>%
+      select(1:(which(names(Fifa_22) == "player_positions")),  # Select all columns up to 'player_position'
+             grouped_position,                               # Include 'grouped_position' right after
+             everything()) 
+
+
+
+
+
+    # Assuming 'players' is your dataframe and it contains an 'age' column
+    Fifa_22 <- Fifa_22 %>%
+      mutate(age_group = case_when(
+        age >= 16 & age <= 21 ~ "Young",
+        age > 21 & age <= 28 ~ "Prime",
+        age > 28 & age <= 34 ~ "Mature",
+        age > 34 ~ "Veteran",
+        TRUE ~ "Unspecified"  # Catch-all for any data that might not fit the above categories
+      ))
+
+    # Reorder columns to place 'age_group' next to 'age'
+    Fifa_22 <- Fifa_22 %>%
+      select(1:(which(names(Fifa_22) == "age")),  # Select all columns up to 'age'
+             age_group,                          # Include 'age_group' right after 'age'
+             everything())                        # Then include all the remaining columns
+
+
+    ```
+
+    .
+
+These steps ensured that the dataset was well-organized and primed for the detailed analysis that followed, focusing on how player attributes influence their market value, ratings, and wages in the game.
+
+**Output:**
+
+![](images/clipboard-2565916960.png)
+
+### References :
+
+Dataset: Fifa 22 <https://sports-statistics.com/sports-data/fifa-2022-dataset-csvs/>

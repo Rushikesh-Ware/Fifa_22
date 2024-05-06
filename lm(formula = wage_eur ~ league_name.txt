@@ -1,0 +1,45 @@
+lm(formula = wage_eur ~ league_name + club_name, data = selected_teams_dataset)
+
+Residuals:
+         1          2          3          4          5          6          7 
+ 5.549e-13  9.577e-13 -2.304e-13 -7.660e-13 -5.821e-13 -5.444e-13 -8.101e-13 
+         8          9         10         11         12         13         14 
+ 2.082e-12 -6.736e-13  1.357e-14 -6.667e+03  1.033e+04 -3.667e+03  1.963e-12 
+        15         16         17         18         19         20         21 
+ 3.697e-13 -2.557e-13  1.991e-13  7.000e+03 -2.075e-12 -7.000e+03  8.564e-13 
+        22         23         24         25 
+ 4.016e-13  2.903e-12 -5.311e-14 -4.146e-12 
+
+Coefficients: (4 not defined because of singularities)
+                                  Estimate Std. Error t value Pr(>|t|)  
+(Intercept)                          15000       9357   1.603   0.2073  
+league_nameFrench Ligue 1            44000      13233   3.325   0.0449 *
+league_nameGerman 1. Bundesliga       3667      10805   0.339   0.7567  
+league_nameItalian Serie A            6000      11460   0.524   0.6368  
+league_nameSpain Primera Division    42000      13233   3.174   0.0503 .
+club_nameAS Monaco                   24000      13233   1.814   0.1674  
+club_nameAston Villa                 52000      13233   3.930   0.0293 *
+club_nameBorussia Mönchengladbach    22333      10805   2.067   0.1306  
+club_nameBrentford                   -9000      13233  -0.680   0.5452  
+club_nameChelsea                     36000      13233   2.720   0.0725 .
+club_nameDeportivo Alavés           -49000      13233  -3.703   0.0342 *
+club_nameDSC Arminia Bielefeld       -6667      10805  -0.617   0.5809  
+club_nameEverton                     62000      13233   4.685   0.0184 *
+club_nameFC Girondins de Bordeaux   -31000      13233  -2.343   0.1010  
+club_nameFC Metz                    -43000      13233  -3.249   0.0475 *
+club_nameGetafe CF                  -27000      13233  -2.040   0.1340  
+club_nameJuventus                    -2000      11460  -0.175   0.8726  
+club_nameOGC Nice                   -45000      13233  -3.401   0.0424 *
+club_nameParis Saint-Germain            NA         NA      NA       NA  
+club_nameRC Celta de Vigo           -54000      13233  -4.081   0.0266 *
+club_nameReal Madrid CF             -41000      13233  -3.098   0.0534 .
+club_nameReal Sociedad                  NA         NA      NA       NA  
+club_nameRoma                       -16000      11460  -1.396   0.2570  
+club_nameTorino F.C.                -16000      11460  -1.396   0.2570  
+club_nameU.S. Sassuolo Calcio           NA         NA      NA       NA  
+club_nameWatford                        NA         NA      NA       NA  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 9357 on 3 degrees of freedom
+Multiple R-squared:  0.9807,	Adjusted R-squared:  0
