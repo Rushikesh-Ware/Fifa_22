@@ -3,7 +3,7 @@
     "path": "C:/Users/rushi/OneDrive/Desktop/GMU/Spring 24/STAT 515/Project/final/title.qmd",
     "project_path": "title.qmd",
     "type": "quarto_markdown",
-    "hash": "0",
+    "hash": "1282043916",
     "contents": "",
     "dirty": false,
     "created": 1714952451359.0,
@@ -17,16 +17,16 @@
         "Source": "Source",
         "docOutlineVisible": "1",
         "rmdVisualCollapsedChunks": "",
-        "cursorPosition": "0,0",
+        "cursorPosition": "9,0",
         "scrollLine": "0",
-        "rmdVisualModeLocation": "21:0"
+        "rmdVisualModeLocation": "48:533.0908813476562"
     },
     "folds": "",
-    "lastKnownWriteTime": 1714956626,
+    "lastKnownWriteTime": 1714960845,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1714956626455,
+    "last_content_update": 1714960845746,
     "read_only": false,
     "read_only_alternatives": []
 }
