@@ -3,7 +3,7 @@
     "path": "C:/Users/rushi/OneDrive/Desktop/GMU/Spring 24/STAT 515/Project/final/_QUARTO.yml",
     "project_path": "_QUARTO.yml",
     "type": "yaml",
-    "hash": "877079862",
+    "hash": "1915220795",
     "contents": "",
     "dirty": false,
     "created": 1714934413554.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "28,26",
-        "scrollLine": "13"
+        "cursorPosition": "38,0",
+        "scrollLine": "24"
     },
     "folds": "",
-    "lastKnownWriteTime": 1714959867,
+    "lastKnownWriteTime": 1714960993,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1714959867725,
+    "last_content_update": 1714960993231,
     "read_only": false,
     "read_only_alternatives": []
 }
